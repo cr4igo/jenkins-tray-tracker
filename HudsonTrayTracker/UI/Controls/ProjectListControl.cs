@@ -1,16 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Text;
+using System.Linq;
 using System.Windows.Forms;
+using DevExpress.XtraBars;
 using DevExpress.XtraEditors;
 using Hudson.TrayTracker.BusinessComponents;
 using Hudson.TrayTracker.Entities;
-using DevExpress.XtraBars;
 using Hudson.TrayTracker.Utils.BackgroundProcessing;
-using Spring.Context.Support;
 
 namespace Hudson.TrayTracker.UI.Controls
 {
@@ -62,11 +59,10 @@ namespace Hudson.TrayTracker.UI.Controls
             // run the process in background
             Process process = new Process("Loading project " + server.Url);
             IList<Project> projects = null;
-            process.DoWork += delegate
-            {
-                projects = HudsonService.LoadProjects(server);
-            };
-            process.RunWorkerCompleted += delegate(object sender, RunWorkerCompletedEventArgs e)
+            process.DoWork += (s, e) => projects = new List<Project>(
+                HudsonService.LoadProjects(server).Where(p => !p.IsFolder));
+
+            process.RunWorkerCompleted += delegate (object sender, RunWorkerCompletedEventArgs e)
             {
                 string endStatus = "";
 

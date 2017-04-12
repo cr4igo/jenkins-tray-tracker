@@ -294,9 +294,9 @@ namespace Hudson.TrayTracker.UI
             {
                 get { return Project.Server.DisplayText; }
             }
-            public string Name
+            public string DisplayName
             {
-                get { return Project.Name; }
+                get { return Project.DisplayName; }
             }
             public string Url
             {

@@ -121,7 +121,7 @@ namespace Hudson.TrayTracker.UI
                     text.Append(statusText);
                     foreach (Project project in pair.Value)
                     {
-                        text.Append("\n  - ").Append(project.Name);
+                        text.Append("\n  - ").Append(project.DisplayName);
 
                         BuildDetails lastFailedBuild = project.LastFailedBuild;
                         if (lastFailedBuild != null && lastFailedBuild.Users != null && lastFailedBuild.Users.Count > 0)
@@ -286,7 +286,7 @@ namespace Hudson.TrayTracker.UI
                     if (buildDetails == null)
                         logger.Warn("No details for the last failed build of project in error: " + project.Url);
                     ISet<string> users = buildDetails != null ? buildDetails.Users : null;
-                    FormatProjectDetails(project.Name, users, errorProjectsText);
+                    FormatProjectDetails(project.DisplayName, users, errorProjectsText);
                     prefix = "\n";
                 }
 
@@ -305,7 +305,7 @@ namespace Hudson.TrayTracker.UI
                     if (buildDetails == null)
                         logger.Warn("No details for the last failed build of project in error: " + project.Url);
                     ISet<string> users = buildDetails != null ? buildDetails.Users : null;
-                    FormatProjectDetails(project.Name, users, regressingProjectsText);
+                    FormatProjectDetails(project.DisplayName, users, regressingProjectsText);
                     prefix = "\n";
                 }
 

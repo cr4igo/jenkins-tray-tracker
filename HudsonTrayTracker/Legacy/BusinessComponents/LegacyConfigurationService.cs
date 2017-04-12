@@ -15,16 +15,16 @@ namespace Hudson.TrayTracker.BusinessComponents
     {
         static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        const string HUDSON_TRAY_TRACKER_DIRECTORY = "Hudson Tray Tracker";
-        const string PROPERTIES_FILE = "hudson.properties";
+        private const string jenkinsTrayTrackerDirectory = "Jenkins Tray Tracker";
+        private const string propertiesFileName = "jenkins.properties";
         // 15 seconds
-        const int DEFAULT_TIME_BETWEEN_UPDATES = 15;
+        private const int defaultDurationBetweenUpdates = 15;
 
         public Configuration LoadConfiguration()
         {
             string userAppDataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string userAppDataPath = PathHelper.Combine(userAppDataDir, HUDSON_TRAY_TRACKER_DIRECTORY);
-            string userConfigurationFile = PathHelper.Combine(userAppDataPath, PROPERTIES_FILE);
+            string userAppDataPath = PathHelper.Combine(userAppDataDir, jenkinsTrayTrackerDirectory);
+            string userConfigurationFile = PathHelper.Combine(userAppDataPath, propertiesFileName);
 
             // create the directory in case it does not exist
             Directory.CreateDirectory(userAppDataPath);
@@ -88,7 +88,7 @@ namespace Hudson.TrayTracker.BusinessComponents
             notificationSettings.TreatUnstableAsFailed = propertiesFile.GetBoolValue("sounds.TreatUnstableAsFailed") ?? true;
 
             var generalSettings = new GeneralSettings();
-            generalSettings.RefreshIntervalInSeconds = propertiesFile.GetIntValue("general.RefreshTimeInSeconds", DEFAULT_TIME_BETWEEN_UPDATES);
+            generalSettings.RefreshIntervalInSeconds = propertiesFile.GetIntValue("general.RefreshTimeInSeconds", defaultDurationBetweenUpdates);
             generalSettings.UpdateMainWindowIcon = propertiesFile.GetBoolValue("general.UpdateMainWindowIcon", true);
             generalSettings.IntegrateWithClaimPlugin = propertiesFile.GetBoolValue("general.IntegrateWithClaimPlugin", true);
 

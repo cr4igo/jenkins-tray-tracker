@@ -363,7 +363,7 @@ namespace Hudson.TrayTracker.UI
             this.nameGridColumn.AppearanceHeader.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
             this.nameGridColumn.AppearanceHeader.Options.UseFont = true;
             this.nameGridColumn.Caption = "Project";
-            this.nameGridColumn.FieldName = "Name";
+            this.nameGridColumn.FieldName = "DisplayName";
             this.nameGridColumn.Name = "nameGridColumn";
             this.nameGridColumn.OptionsColumn.AllowEdit = false;
             this.nameGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.DisplayText;
@@ -452,7 +452,7 @@ namespace Hudson.TrayTracker.UI
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Name = "MainForm";
-            this.Text = "Hudson Tray Tracker";
+            this.Text = "Jenkins Tray Tracker";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HudsonTrayTrackerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();

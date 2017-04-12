@@ -38,36 +38,54 @@ namespace Hudson.TrayTracker.BusinessComponents
             ServicePointManager.ServerCertificateValidationCallback = ValidateServerCertificate;
         }
 
-        public IList<Project> LoadProjects(Server server)
-        {
-            String url = NetUtils.ConcatUrls(server.Url, "/api/xml");
+        public IList<Project> LoadProjects(Server server) =>
+            LoadProjects(server, server.Url, null);
 
+        public IList<Project> LoadProjects(Server server, string baseUrl, Project parentProject)
+        {
+            var url = NetUtils.ConcatUrls(baseUrl, "/api/xml");
             logger.Info("Loading projects from " + url);
 
-            String xmlStr = DownloadString(server.Credentials, url, false, server.IgnoreUntrustedCertificate);
+            var xmlStr = DownloadString(server.Credentials, url, false, server.IgnoreUntrustedCertificate);
+            if (logger.IsTraceEnabled) logger.Trace("XML: " + xmlStr);
 
-            if (logger.IsTraceEnabled)
-                logger.Trace("XML: " + xmlStr);
-
-            XmlDocument xml = new XmlDocument();
+            var xml = new XmlDocument();
             xml.LoadXml(xmlStr);
 
-            XmlNodeList jobElements = xml.SelectNodes("/hudson/job");
+            XmlNodeList jobElements = xml.SelectNodes("/*/job");
             var projects = new List<Project>();
             foreach (XmlNode jobElement in jobElements)
             {
                 string projectName = jobElement.SelectSingleNode("name").InnerText;
                 string projectUrl = jobElement.SelectSingleNode("url").InnerText;
 
-                Project project = new Project();
-                project.Server = server;
-                project.Name = projectName;
-                project.Url = projectUrl;
+                var projectClass = jobElement.Attributes["_class"].Value;
+                var isFolder = JenkinsUtils.IsFolder(projectClass);
+
+                var fullName = parentProject == null ?
+                    projectName :
+                    parentProject.FullName + "." + projectName;
+
+                var project = new Project()
+                {
+                    Server = server,
+                    Name = projectName,
+                    FullName = fullName,
+                    Url = projectUrl,
+                    IsFolder = isFolder,
+                    ParentProject = parentProject
+                };
 
                 if (logger.IsDebugEnabled)
                     logger.Debug("Found project " + projectName + " (" + projectUrl + ")");
 
                 projects.Add(project);
+
+                if (isFolder)
+                {
+                    var subProjects = LoadProjects(server, projectUrl, project);
+                    projects.AddRange(subProjects);
+                }
             }
 
             logger.Info("Done loading projects");

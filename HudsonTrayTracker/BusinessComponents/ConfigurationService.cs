@@ -13,16 +13,16 @@ namespace Hudson.TrayTracker.BusinessComponents
 {
     public class ConfigurationService
     {
+        private static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        private const string jenkinsTrayTrackerDirectory = "Jenkins Tray Tracker";
+        private const string configurationFileName = "jenkins.configuration";
+
+        private string userConfigurationFile;
+        private Configuration configuration;
+
         public delegate void ConfigurationUpdatedHandler();
         public event ConfigurationUpdatedHandler ConfigurationUpdated;
-
-        static readonly ILog logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        const string HUDSON_TRAY_TRACKER_DIRECTORY = "Hudson Tray Tracker";
-        const string CONFIGURATION_FILE = "hudson.configuration";
-
-        string userConfigurationFile;
-        Configuration configuration;
 
         public ISet<Server> Servers { get { return configuration.Servers; } }
         public NotificationSettings NotificationSettings { get { return configuration.NotificationSettings; } }
@@ -31,8 +31,8 @@ namespace Hudson.TrayTracker.BusinessComponents
         public void Initialize()
         {
             string userAppDataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string userAppDataPath = PathHelper.Combine(userAppDataDir, HUDSON_TRAY_TRACKER_DIRECTORY);
-            userConfigurationFile = PathHelper.Combine(userAppDataPath, CONFIGURATION_FILE);
+            string userAppDataPath = PathHelper.Combine(userAppDataDir, jenkinsTrayTrackerDirectory);
+            userConfigurationFile = PathHelper.Combine(userAppDataPath, configurationFileName);
 
             // create the directory in case it does not exist
             Directory.CreateDirectory(userAppDataPath);

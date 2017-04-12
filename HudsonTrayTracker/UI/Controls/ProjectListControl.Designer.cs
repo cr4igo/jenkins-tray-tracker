@@ -124,7 +124,7 @@ namespace Hudson.TrayTracker.UI.Controls
             // projectNameGridColumn
             // 
             this.projectNameGridColumn.Caption = "Projects";
-            this.projectNameGridColumn.FieldName = "Name";
+            this.projectNameGridColumn.FieldName = "DisplayName";
             this.projectNameGridColumn.Name = "projectNameGridColumn";
             this.projectNameGridColumn.OptionsColumn.AllowEdit = false;
             this.projectNameGridColumn.SortMode = DevExpress.XtraGrid.ColumnSortMode.DisplayText;

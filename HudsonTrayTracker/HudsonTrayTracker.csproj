@@ -306,6 +306,7 @@
     <Compile Include="Legacy\Collections\PropertiesContainer.cs" />
     <Compile Include="Utils\IO\PathHelper.cs" />
     <Compile Include="Legacy\IO\PropertiesFile.cs" />
+    <Compile Include="Utils\JenkinsUtils.cs" />
     <Compile Include="Utils\Logging\LoggingHelper.cs" />
     <Compile Include="Utils\NetUtils.cs" />
     <Compile Include="Utils\PInvokeUtils.cs" />
