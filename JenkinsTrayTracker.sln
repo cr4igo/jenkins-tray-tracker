@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0D9F4EE0-5F25-432E-AF6C-5836AE260047}"
+	ProjectSection(SolutionItems) = preProject
+		JenkinsTrayTracker.vsmdi = JenkinsTrayTracker.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JenkinsTrayTracker", "JenkinsTrayTracker\JenkinsTrayTracker.csproj", "{A54602CA-6823-4F2C-870F-1D464D9F4814}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JenkinsTrayTracker.Tests", "JenkinsTrayTracker.Tests\JenkinsTrayTracker.Tests.csproj", "{B7F74B87-21B6-4887-A41E-49CDF8EFB7E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A54602CA-6823-4F2C-870F-1D464D9F4814}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A54602CA-6823-4F2C-870F-1D464D9F4814}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A54602CA-6823-4F2C-870F-1D464D9F4814}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A54602CA-6823-4F2C-870F-1D464D9F4814}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F74B87-21B6-4887-A41E-49CDF8EFB7E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F74B87-21B6-4887-A41E-49CDF8EFB7E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F74B87-21B6-4887-A41E-49CDF8EFB7E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F74B87-21B6-4887-A41E-49CDF8EFB7E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = JenkinsTrayTracker.vsmdi
+	EndGlobalSection
+EndGlobal
