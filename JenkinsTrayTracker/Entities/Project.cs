@@ -15,13 +15,6 @@ namespace JenkinsTrayTracker.Entities
 
         [JsonProperty("fullName")]
         public string FullName { get; set; }
-        ////////{
-        ////////    get { return string.IsNullOrEmpty(fullName) ? Name : fullName; }
-        ////////    set { fullName = value; }
-        ////////}
-
-        ////[JsonProperty("parentFullName")]
-        ////public string ParentFullName { get; set; }
 
         public string DisplayName
         {

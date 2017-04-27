@@ -165,12 +165,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessComponents\AllServersStatus.cs" />
-    <Compile Include="BusinessComponents\ApplicationUpdateService.cs" />
     <Compile Include="BusinessComponents\ClaimService.cs" />
     <Compile Include="BusinessComponents\ConfigurationService.cs" />
     <Compile Include="BusinessComponents\HudsonService.cs" />
     <Compile Include="Entities\Configuration.cs" />
-    <Compile Include="Legacy\BusinessComponents\LegacyConfigurationService.cs" />
     <Compile Include="BusinessComponents\NotificationService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -297,15 +295,10 @@
     <Compile Include="UI\TrayNotifier.Designer.cs">
       <DependentUpon>TrayNotifier.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\ApplicationUpdateHandler.cs" />
     <Compile Include="Utils\BackgroundProcessing\BackgroundProcessExecutor.cs" />
     <Compile Include="Utils\BackgroundProcessing\ErrorHolder.cs" />
     <Compile Include="Utils\BackgroundProcessing\Process.cs" />
-    <Compile Include="Legacy\Collections\DualPropertiesContainer.cs" />
-    <Compile Include="Legacy\Collections\IPropertiesContainer.cs" />
-    <Compile Include="Legacy\Collections\PropertiesContainer.cs" />
     <Compile Include="Utils\IO\PathHelper.cs" />
-    <Compile Include="Legacy\IO\PropertiesFile.cs" />
     <Compile Include="Utils\JenkinsUtils.cs" />
     <Compile Include="Utils\Logging\LoggingHelper.cs" />
     <Compile Include="Utils\NetUtils.cs" />
